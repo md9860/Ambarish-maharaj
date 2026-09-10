@@ -102,6 +102,32 @@
 }
 </style>
 
+
+<style>
+/* Mobile alignment refinement — equal spacing on both sides */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:760px){
+  body{width:100%;margin:0}
+  .section{width:100%;padding-left:16px!important;padding-right:16px!important}
+  .section-heading,.about-grid,.cards,.feature-grid,.festival-grid,.book-grid,.timeline,.contact-box,.featured-video,.video-showcase,.video-more,.profile-gallery{width:100%;max-width:100%;margin-left:auto!important;margin-right:auto!important}
+  .section-heading{padding-left:0;padding-right:0;text-align:center}
+  .about-copy,.feature,.card,.festival-card,.book-card,.timeline-item{min-width:0}
+  .parichay-photo-trio{width:100%;max-width:100%;padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important}
+  .parichay-relation{width:100%;max-width:100%;margin-left:auto!important;margin-right:auto!important}
+  .profile-gallery{padding-left:0;padding-right:0}
+  .gallery-card{width:100%;min-width:0}
+  .contact-box{box-sizing:border-box}
+  .creative-videos .section-heading{width:100%;max-width:100%}
+  .featured-video,.video-showcase,.video-more{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+}
+@media(max-width:520px){
+  .section{padding-left:14px!important;padding-right:14px!important}
+  .parichay-photo-trio{gap:6px!important}
+  .profile-gallery{gap:12px}
+}
+</style>
+
 </head>
 <body>
 <header class="site-header premium-header" id="top">
