@@ -1,138 +1,128 @@
-// V14 main home-screen slider
-(() => {
-    const slides = [...document.querySelectorAll('.home-slide')],
-        dots = document.querySelector('.home-slider-dots'),
-        prev = document.querySelector('.home-slider-arrow.prev'),
-        next = document.querySelector('.home-slider-arrow.next'),
-        hero = document.querySelector('.home-slider');
+const header=document.querySelector('.site-header');const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav');window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>30));toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open);toggle.textContent=open?'✕':'☰'});document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}));const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));document.getElementById('year').textContent=new Date().getFullYear();
+// V16 complete categorized gallery — all user-provided photos included
+// Gallery is initialized only when the gallery section is near the viewport.
+// This prevents the 219-photo thumbnail list from competing with the home page.
+(()=>{
+  let galleryStarted=false;
 
-    if (!slides.length || !dots) return;
+  function initGallery(){
+    if(galleryStarted)return;
+    galleryStarted=true;
+const data={"all":{"label":"सर्व छायाचित्रे","title":"प. पू. अंबरीष महाराज — कार्य व सेवा छायाचित्र संग्रह","paths":["assets/gallery/full/dharmic-social/dharmic-social-001.jpeg","assets/gallery/full/dharmic-social/dharmic-social-002.jpeg","assets/gallery/full/dharmic-social/dharmic-social-003.jpeg","assets/gallery/full/dharmic-social/dharmic-social-004.jpeg","assets/gallery/full/dharmic-social/dharmic-social-005.jpeg","assets/gallery/full/dharmic-social/dharmic-social-006.jpeg","assets/gallery/full/dharmic-social/dharmic-social-007.jpeg","assets/gallery/full/dharmic-social/dharmic-social-008.jpeg","assets/gallery/full/dharmic-social/dharmic-social-009.jpeg","assets/gallery/full/dharmic-social/dharmic-social-010.jpeg","assets/gallery/full/dharmic-social/dharmic-social-011.jpeg","assets/gallery/full/dharmic-social/dharmic-social-012.jpeg","assets/gallery/full/dharmic-social/dharmic-social-013.jpeg","assets/gallery/full/dharmic-social/dharmic-social-014.jpeg","assets/gallery/full/dharmic-social/dharmic-social-015.jpeg","assets/gallery/full/dharmic-social/dharmic-social-016.jpeg","assets/gallery/full/dharmic-social/dharmic-social-017.jpeg","assets/gallery/full/dharmic-social/dharmic-social-018.jpeg","assets/gallery/full/dharmic-social/dharmic-social-019.jpeg","assets/gallery/full/dharmic-social/dharmic-social-020.jpeg","assets/gallery/full/dharmic-social/dharmic-social-021.jpeg","assets/gallery/full/dharmic-social/dharmic-social-022.jpeg","assets/gallery/full/dharmic-social/dharmic-social-023.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-001.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-002.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-003.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-004.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-005.jpeg","assets/gallery/full/janmashatabi/janmashatabi-001.jpeg","assets/gallery/full/janmashatabi/janmashatabi-002.jpeg","assets/gallery/full/janmashatabi/janmashatabi-003.jpeg","assets/gallery/full/janmashatabi/janmashatabi-004.jpeg","assets/gallery/full/janmashatabi/janmashatabi-005.jpeg","assets/gallery/full/janmashatabi/janmashatabi-006.jpeg","assets/gallery/full/janmashatabi/janmashatabi-007.jpeg","assets/gallery/full/janmashatabi/janmashatabi-008.jpeg","assets/gallery/full/janmashatabi/janmashatabi-009.jpeg","assets/gallery/full/janmashatabi/janmashatabi-010.jpeg","assets/gallery/full/janmashatabi/janmashatabi-011.jpeg","assets/gallery/full/janmashatabi/janmashatabi-012.jpeg","assets/gallery/full/janmashatabi/janmashatabi-013.jpeg","assets/gallery/full/janmashatabi/janmashatabi-014.jpeg","assets/gallery/full/janmashatabi/janmashatabi-015.jpeg","assets/gallery/full/janmashatabi/janmashatabi-016.jpeg","assets/gallery/full/janmashatabi/janmashatabi-017.jpeg","assets/gallery/full/janmashatabi/janmashatabi-018.jpeg","assets/gallery/full/janmashatabi/janmashatabi-019.jpeg","assets/gallery/full/janmashatabi/janmashatabi-020.jpeg","assets/gallery/full/janmashatabi/janmashatabi-021.jpeg","assets/gallery/full/janmashatabi/janmashatabi-022.jpeg","assets/gallery/full/janmashatabi/janmashatabi-023.jpeg","assets/gallery/full/janmashatabi/janmashatabi-024.jpeg","assets/gallery/full/janmashatabi/janmashatabi-025.jpeg","assets/gallery/full/janmashatabi/janmashatabi-026.jpeg","assets/gallery/full/janmashatabi/janmashatabi-027.jpeg","assets/gallery/full/janmashatabi/janmashatabi-028.jpeg","assets/gallery/full/janmashatabi/janmashatabi-029.jpeg","assets/gallery/full/janmashatabi/janmashatabi-030.jpeg","assets/gallery/full/janmashatabi/janmashatabi-031.jpeg","assets/gallery/full/janmashatabi/janmashatabi-032.jpeg","assets/gallery/full/janmashatabi/janmashatabi-033.jpeg","assets/gallery/full/janmashatabi/janmashatabi-034.jpeg","assets/gallery/full/janmashatabi/janmashatabi-035.jpeg","assets/gallery/full/janmashatabi/janmashatabi-036.jpeg","assets/gallery/full/janmashatabi/janmashatabi-037.jpeg","assets/gallery/full/janmashatabi/janmashatabi-038.jpeg","assets/gallery/full/janmashatabi/janmashatabi-039.jpeg","assets/gallery/full/janmashatabi/janmashatabi-040.jpeg","assets/gallery/full/janmashatabi/janmashatabi-041.jpeg","assets/gallery/full/janmashatabi/janmashatabi-042.jpeg","assets/gallery/full/janmashatabi/janmashatabi-043.jpeg","assets/gallery/full/janmashatabi/janmashatabi-044.jpeg","assets/gallery/full/janmashatabi/janmashatabi-045.jpeg","assets/gallery/full/janmashatabi/janmashatabi-046.jpeg","assets/gallery/full/janmashatabi/janmashatabi-047.jpeg","assets/gallery/full/janmashatabi/janmashatabi-048.jpeg","assets/gallery/full/janmashatabi/janmashatabi-049.jpeg","assets/gallery/full/janmashatabi/janmashatabi-050.jpeg","assets/gallery/full/janmashatabi/janmashatabi-051.jpeg","assets/gallery/full/janmashatabi/janmashatabi-052.jpeg","assets/gallery/full/janmashatabi/janmashatabi-053.jpeg","assets/gallery/full/janmashatabi/janmashatabi-054.jpeg","assets/gallery/full/janmashatabi/janmashatabi-055.jpeg","assets/gallery/full/janmashatabi/janmashatabi-056.jpeg","assets/gallery/full/janmashatabi/janmashatabi-057.jpeg","assets/gallery/full/janmashatabi/janmashatabi-058.jpeg","assets/gallery/full/janmashatabi/janmashatabi-059.jpeg","assets/gallery/full/janmashatabi/janmashatabi-060.jpeg","assets/gallery/full/janmashatabi/janmashatabi-061.jpeg","assets/gallery/full/janmashatabi/janmashatabi-062.jpeg","assets/gallery/full/janmashatabi/janmashatabi-063.jpeg","assets/gallery/full/janmashatabi/janmashatabi-064.jpeg","assets/gallery/full/janmashatabi/janmashatabi-065.jpeg","assets/gallery/full/janmashatabi/janmashatabi-066.jpeg","assets/gallery/full/janmashatabi/janmashatabi-067.jpeg","assets/gallery/full/janmashatabi/janmashatabi-068.jpeg","assets/gallery/full/janmashatabi/janmashatabi-069.jpeg","assets/gallery/full/janmashatabi/janmashatabi-070.jpeg","assets/gallery/full/janmashatabi/janmashatabi-071.jpeg","assets/gallery/full/janmashatabi/janmashatabi-072.jpeg","assets/gallery/full/janmashatabi/janmashatabi-073.jpeg","assets/gallery/full/janmashatabi/janmashatabi-074.jpeg","assets/gallery/full/janmashatabi/janmashatabi-075.jpeg","assets/gallery/full/janmashatabi/janmashatabi-076.jpeg","assets/gallery/full/janmashatabi/janmashatabi-077.jpeg","assets/gallery/full/janmashatabi/janmashatabi-078.jpeg","assets/gallery/full/janmashatabi/janmashatabi-079.jpeg","assets/gallery/full/janmashatabi/janmashatabi-080.jpeg","assets/gallery/full/janmashatabi/janmashatabi-081.jpeg","assets/gallery/full/janmashatabi/janmashatabi-082.jpeg","assets/gallery/full/janmashatabi/janmashatabi-083.jpeg","assets/gallery/full/janmashatabi/janmashatabi-084.jpeg","assets/gallery/full/janmashatabi/janmashatabi-085.jpeg","assets/gallery/full/janmashatabi/janmashatabi-086.jpeg","assets/gallery/full/janmashatabi/janmashatabi-087.jpeg","assets/gallery/full/janmashatabi/janmashatabi-088.jpeg","assets/gallery/full/janmashatabi/janmashatabi-089.jpeg","assets/gallery/full/janmashatabi/janmashatabi-090.jpeg","assets/gallery/full/janmashatabi/janmashatabi-091.jpeg","assets/gallery/full/janmashatabi/janmashatabi-092.jpeg","assets/gallery/full/patrika/patrika-001.jpeg","assets/gallery/full/patrika/patrika-002.jpeg","assets/gallery/full/patrika/patrika-003.jpeg","assets/gallery/full/patrika/patrika-004.jpeg","assets/gallery/full/patrika/patrika-005.jpeg","assets/gallery/full/patrika/patrika-006.jpeg","assets/gallery/full/patrika/patrika-007.jpeg","assets/gallery/full/patrika/patrika-008.jpeg","assets/gallery/full/newspaper/newspaper-001.jpeg","assets/gallery/full/newspaper/newspaper-002.jpeg","assets/gallery/full/newspaper/newspaper-003.jpeg","assets/gallery/full/newspaper/newspaper-004.jpeg","assets/gallery/full/newspaper/newspaper-005.jpeg","assets/gallery/full/newspaper/newspaper-006.jpeg","assets/gallery/full/newspaper/newspaper-007.jpeg","assets/gallery/full/newspaper/newspaper-008.jpeg","assets/gallery/full/newspaper/newspaper-009.jpeg","assets/gallery/full/newspaper/newspaper-010.jpeg","assets/gallery/full/newspaper/newspaper-011.jpeg","assets/gallery/full/newspaper/newspaper-012.jpeg","assets/gallery/full/padayatra-full/padayatra-full-001.jpeg","assets/gallery/full/padayatra-full/padayatra-full-002.jpeg","assets/gallery/full/padayatra-full/padayatra-full-003.jpeg","assets/gallery/full/padayatra-full/padayatra-full-004.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-001.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-002.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-003.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-004.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-005.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-006.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-007.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-008.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-009.jpeg","assets/gallery/full/shibir/shibir-001.jpeg","assets/gallery/full/shibir/shibir-002.jpeg","assets/gallery/full/shibir/shibir-003.jpeg","assets/gallery/full/shibir/shibir-004.jpeg","assets/gallery/full/shibir/shibir-005.jpeg","assets/gallery/full/shibir/shibir-006.jpeg","assets/gallery/full/shibir/shibir-007.jpeg","assets/gallery/full/shibir/shibir-008.jpeg","assets/gallery/full/shibir/shibir-009.jpeg","assets/gallery/full/shibir/shibir-010.jpeg","assets/gallery/full/shibir/shibir-011.jpeg","assets/gallery/full/shibir/shibir-012.jpeg","assets/gallery/full/shibir/shibir-013.jpeg","assets/gallery/full/shibir/shibir-014.jpeg","assets/gallery/full/shibir/shibir-015.jpeg","assets/gallery/full/shibir/shibir-016.jpeg","assets/gallery/full/shibir/shibir-017.jpeg","assets/gallery/full/shibir/shibir-018.jpeg","assets/gallery/full/shibir/shibir-019.jpeg","assets/gallery/full/akola-full/akola-full-001.jpeg","assets/gallery/full/akola-full/akola-full-002.jpeg","assets/gallery/full/akola-full/akola-full-003.jpeg","assets/gallery/full/akola-full/akola-full-004.jpeg","assets/gallery/full/akola-full/akola-full-005.jpeg","assets/gallery/full/akola-full/akola-full-006.jpeg","assets/gallery/full/akola-full/akola-full-007.jpeg","assets/gallery/full/akola-full/akola-full-008.jpeg","assets/gallery/full/akola-full/akola-full-009.jpeg","assets/gallery/full/akola-full/akola-full-010.jpeg","assets/gallery/full/akola-full/akola-full-011.jpeg","assets/gallery/full/akola-full/akola-full-012.jpeg","assets/gallery/full/akola-full/akola-full-013.jpeg","assets/gallery/full/akola-full/akola-full-014.jpeg","assets/gallery/full/akola-full/akola-full-015.jpeg","assets/gallery/full/akola-full/akola-full-016.jpeg","assets/gallery/full/akola-full/akola-full-017.jpeg","assets/gallery/full/akola-full/akola-full-018.jpeg","assets/gallery/full/akola-full/akola-full-019.jpeg","assets/gallery/full/akola-full/akola-full-020.jpeg","assets/gallery/full/akola-full/akola-full-021.jpeg","assets/gallery/full/akola-full/akola-full-022.jpeg","assets/gallery/full/akola-full/akola-full-023.jpeg","assets/gallery/full/akola-full/akola-full-024.jpeg","assets/gallery/full/akola-full/akola-full-025.jpeg","assets/gallery/full/akola-full/akola-full-026.jpeg","assets/gallery/full/akola-full/akola-full-027.jpeg","assets/gallery/full/akola-full/akola-full-028.jpeg","assets/gallery/full/akola-full/akola-full-029.jpeg","assets/gallery/full/akola-full/akola-full-030.jpeg","assets/gallery/full/akola-full/akola-full-031.jpeg","assets/gallery/full/akola-full/akola-full-032.jpeg","assets/gallery/full/akola-full/akola-full-033.jpeg","assets/gallery/full/akola-full/akola-full-034.jpeg","assets/gallery/full/akola-full/akola-full-035.jpeg","assets/gallery/full/akola-full/akola-full-036.jpeg","assets/gallery/full/akola-full/akola-full-037.jpeg","assets/gallery/full/akola-full/akola-full-038.jpeg","assets/gallery/full/akola-full/akola-full-039.jpeg","assets/gallery/full/akola-full/akola-full-040.jpeg","assets/gallery/full/akola-full/akola-full-041.jpeg","assets/gallery/full/akola-full/akola-full-042.jpeg","assets/gallery/full/akola-full/akola-full-043.jpeg","assets/gallery/full/akola-full/akola-full-044.jpeg","assets/gallery/full/akola-full/akola-full-045.jpeg","assets/gallery/full/akola-full/akola-full-046.jpeg","assets/gallery/full/akola-full/akola-full-047.jpeg"]},"dharmic-social":{"label":"धार्मिक व सामाजिक कार्य","title":"धार्मिक व सामाजिक कार्य — छायाचित्र संग्रह","paths":["assets/gallery/full/dharmic-social/dharmic-social-001.jpeg","assets/gallery/full/dharmic-social/dharmic-social-002.jpeg","assets/gallery/full/dharmic-social/dharmic-social-003.jpeg","assets/gallery/full/dharmic-social/dharmic-social-004.jpeg","assets/gallery/full/dharmic-social/dharmic-social-005.jpeg","assets/gallery/full/dharmic-social/dharmic-social-006.jpeg","assets/gallery/full/dharmic-social/dharmic-social-007.jpeg","assets/gallery/full/dharmic-social/dharmic-social-008.jpeg","assets/gallery/full/dharmic-social/dharmic-social-009.jpeg","assets/gallery/full/dharmic-social/dharmic-social-010.jpeg","assets/gallery/full/dharmic-social/dharmic-social-011.jpeg","assets/gallery/full/dharmic-social/dharmic-social-012.jpeg","assets/gallery/full/dharmic-social/dharmic-social-013.jpeg","assets/gallery/full/dharmic-social/dharmic-social-014.jpeg","assets/gallery/full/dharmic-social/dharmic-social-015.jpeg","assets/gallery/full/dharmic-social/dharmic-social-016.jpeg","assets/gallery/full/dharmic-social/dharmic-social-017.jpeg","assets/gallery/full/dharmic-social/dharmic-social-018.jpeg","assets/gallery/full/dharmic-social/dharmic-social-019.jpeg","assets/gallery/full/dharmic-social/dharmic-social-020.jpeg","assets/gallery/full/dharmic-social/dharmic-social-021.jpeg","assets/gallery/full/dharmic-social/dharmic-social-022.jpeg","assets/gallery/full/dharmic-social/dharmic-social-023.jpeg"]},"gokulashtami-full":{"label":"गोकुळाष्टमी","title":"गोकुळाष्टमी — छायाचित्र संग्रह","paths":["assets/gallery/full/gokulashtami-full/gokulashtami-full-001.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-002.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-003.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-004.jpeg","assets/gallery/full/gokulashtami-full/gokulashtami-full-005.jpeg"]},"janmashatabi":{"label":"जन्मशताब्दी महोत्सव","title":"जन्मशताब्दी महोत्सव — छायाचित्र संग्रह","paths":["assets/gallery/full/janmashatabi/janmashatabi-001.jpeg","assets/gallery/full/janmashatabi/janmashatabi-002.jpeg","assets/gallery/full/janmashatabi/janmashatabi-003.jpeg","assets/gallery/full/janmashatabi/janmashatabi-004.jpeg","assets/gallery/full/janmashatabi/janmashatabi-005.jpeg","assets/gallery/full/janmashatabi/janmashatabi-006.jpeg","assets/gallery/full/janmashatabi/janmashatabi-007.jpeg","assets/gallery/full/janmashatabi/janmashatabi-008.jpeg","assets/gallery/full/janmashatabi/janmashatabi-009.jpeg","assets/gallery/full/janmashatabi/janmashatabi-010.jpeg","assets/gallery/full/janmashatabi/janmashatabi-011.jpeg","assets/gallery/full/janmashatabi/janmashatabi-012.jpeg","assets/gallery/full/janmashatabi/janmashatabi-013.jpeg","assets/gallery/full/janmashatabi/janmashatabi-014.jpeg","assets/gallery/full/janmashatabi/janmashatabi-015.jpeg","assets/gallery/full/janmashatabi/janmashatabi-016.jpeg","assets/gallery/full/janmashatabi/janmashatabi-017.jpeg","assets/gallery/full/janmashatabi/janmashatabi-018.jpeg","assets/gallery/full/janmashatabi/janmashatabi-019.jpeg","assets/gallery/full/janmashatabi/janmashatabi-020.jpeg","assets/gallery/full/janmashatabi/janmashatabi-021.jpeg","assets/gallery/full/janmashatabi/janmashatabi-022.jpeg","assets/gallery/full/janmashatabi/janmashatabi-023.jpeg","assets/gallery/full/janmashatabi/janmashatabi-024.jpeg","assets/gallery/full/janmashatabi/janmashatabi-025.jpeg","assets/gallery/full/janmashatabi/janmashatabi-026.jpeg","assets/gallery/full/janmashatabi/janmashatabi-027.jpeg","assets/gallery/full/janmashatabi/janmashatabi-028.jpeg","assets/gallery/full/janmashatabi/janmashatabi-029.jpeg","assets/gallery/full/janmashatabi/janmashatabi-030.jpeg","assets/gallery/full/janmashatabi/janmashatabi-031.jpeg","assets/gallery/full/janmashatabi/janmashatabi-032.jpeg","assets/gallery/full/janmashatabi/janmashatabi-033.jpeg","assets/gallery/full/janmashatabi/janmashatabi-034.jpeg","assets/gallery/full/janmashatabi/janmashatabi-035.jpeg","assets/gallery/full/janmashatabi/janmashatabi-036.jpeg","assets/gallery/full/janmashatabi/janmashatabi-037.jpeg","assets/gallery/full/janmashatabi/janmashatabi-038.jpeg","assets/gallery/full/janmashatabi/janmashatabi-039.jpeg","assets/gallery/full/janmashatabi/janmashatabi-040.jpeg","assets/gallery/full/janmashatabi/janmashatabi-041.jpeg","assets/gallery/full/janmashatabi/janmashatabi-042.jpeg","assets/gallery/full/janmashatabi/janmashatabi-043.jpeg","assets/gallery/full/janmashatabi/janmashatabi-044.jpeg","assets/gallery/full/janmashatabi/janmashatabi-045.jpeg","assets/gallery/full/janmashatabi/janmashatabi-046.jpeg","assets/gallery/full/janmashatabi/janmashatabi-047.jpeg","assets/gallery/full/janmashatabi/janmashatabi-048.jpeg","assets/gallery/full/janmashatabi/janmashatabi-049.jpeg","assets/gallery/full/janmashatabi/janmashatabi-050.jpeg","assets/gallery/full/janmashatabi/janmashatabi-051.jpeg","assets/gallery/full/janmashatabi/janmashatabi-052.jpeg","assets/gallery/full/janmashatabi/janmashatabi-053.jpeg","assets/gallery/full/janmashatabi/janmashatabi-054.jpeg","assets/gallery/full/janmashatabi/janmashatabi-055.jpeg","assets/gallery/full/janmashatabi/janmashatabi-056.jpeg","assets/gallery/full/janmashatabi/janmashatabi-057.jpeg","assets/gallery/full/janmashatabi/janmashatabi-058.jpeg","assets/gallery/full/janmashatabi/janmashatabi-059.jpeg","assets/gallery/full/janmashatabi/janmashatabi-060.jpeg","assets/gallery/full/janmashatabi/janmashatabi-061.jpeg","assets/gallery/full/janmashatabi/janmashatabi-062.jpeg","assets/gallery/full/janmashatabi/janmashatabi-063.jpeg","assets/gallery/full/janmashatabi/janmashatabi-064.jpeg","assets/gallery/full/janmashatabi/janmashatabi-065.jpeg","assets/gallery/full/janmashatabi/janmashatabi-066.jpeg","assets/gallery/full/janmashatabi/janmashatabi-067.jpeg","assets/gallery/full/janmashatabi/janmashatabi-068.jpeg","assets/gallery/full/janmashatabi/janmashatabi-069.jpeg","assets/gallery/full/janmashatabi/janmashatabi-070.jpeg","assets/gallery/full/janmashatabi/janmashatabi-071.jpeg","assets/gallery/full/janmashatabi/janmashatabi-072.jpeg","assets/gallery/full/janmashatabi/janmashatabi-073.jpeg","assets/gallery/full/janmashatabi/janmashatabi-074.jpeg","assets/gallery/full/janmashatabi/janmashatabi-075.jpeg","assets/gallery/full/janmashatabi/janmashatabi-076.jpeg","assets/gallery/full/janmashatabi/janmashatabi-077.jpeg","assets/gallery/full/janmashatabi/janmashatabi-078.jpeg","assets/gallery/full/janmashatabi/janmashatabi-079.jpeg","assets/gallery/full/janmashatabi/janmashatabi-080.jpeg","assets/gallery/full/janmashatabi/janmashatabi-081.jpeg","assets/gallery/full/janmashatabi/janmashatabi-082.jpeg","assets/gallery/full/janmashatabi/janmashatabi-083.jpeg","assets/gallery/full/janmashatabi/janmashatabi-084.jpeg","assets/gallery/full/janmashatabi/janmashatabi-085.jpeg","assets/gallery/full/janmashatabi/janmashatabi-086.jpeg","assets/gallery/full/janmashatabi/janmashatabi-087.jpeg","assets/gallery/full/janmashatabi/janmashatabi-088.jpeg","assets/gallery/full/janmashatabi/janmashatabi-089.jpeg","assets/gallery/full/janmashatabi/janmashatabi-090.jpeg","assets/gallery/full/janmashatabi/janmashatabi-091.jpeg","assets/gallery/full/janmashatabi/janmashatabi-092.jpeg"]},"patrika":{"label":"कार्यक्रम पत्रिका","title":"कार्यक्रम पत्रिका — छायाचित्र संग्रह","paths":["assets/gallery/full/patrika/patrika-001.jpeg","assets/gallery/full/patrika/patrika-002.jpeg","assets/gallery/full/patrika/patrika-003.jpeg","assets/gallery/full/patrika/patrika-004.jpeg","assets/gallery/full/patrika/patrika-005.jpeg","assets/gallery/full/patrika/patrika-006.jpeg","assets/gallery/full/patrika/patrika-007.jpeg","assets/gallery/full/patrika/patrika-008.jpeg"]},"newspaper":{"label":"वृत्तपत्र प्रसिद्धी","title":"वृत्तपत्र प्रसिद्धी — छायाचित्र संग्रह","paths":["assets/gallery/full/newspaper/newspaper-001.jpeg","assets/gallery/full/newspaper/newspaper-002.jpeg","assets/gallery/full/newspaper/newspaper-003.jpeg","assets/gallery/full/newspaper/newspaper-004.jpeg","assets/gallery/full/newspaper/newspaper-005.jpeg","assets/gallery/full/newspaper/newspaper-006.jpeg","assets/gallery/full/newspaper/newspaper-007.jpeg","assets/gallery/full/newspaper/newspaper-008.jpeg","assets/gallery/full/newspaper/newspaper-009.jpeg","assets/gallery/full/newspaper/newspaper-010.jpeg","assets/gallery/full/newspaper/newspaper-011.jpeg","assets/gallery/full/newspaper/newspaper-012.jpeg"]},"padayatra-full":{"label":"पदयात्रा","title":"पदयात्रा — छायाचित्र संग्रह","paths":["assets/gallery/full/padayatra-full/padayatra-full-001.jpeg","assets/gallery/full/padayatra-full/padayatra-full-002.jpeg","assets/gallery/full/padayatra-full/padayatra-full-003.jpeg","assets/gallery/full/padayatra-full/padayatra-full-004.jpeg"]},"pranpratishtha-full":{"label":"प्राणप्रतिष्ठा","title":"प्राणप्रतिष्ठा — छायाचित्र संग्रह","paths":["assets/gallery/full/pranpratishtha-full/pranpratishtha-full-001.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-002.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-003.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-004.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-005.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-006.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-007.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-008.jpeg","assets/gallery/full/pranpratishtha-full/pranpratishtha-full-009.jpeg"]},"shibir":{"label":"शिबिर व सेवा उपक्रम","title":"शिबिर व सेवा उपक्रम — छायाचित्र संग्रह","paths":["assets/gallery/full/shibir/shibir-001.jpeg","assets/gallery/full/shibir/shibir-002.jpeg","assets/gallery/full/shibir/shibir-003.jpeg","assets/gallery/full/shibir/shibir-004.jpeg","assets/gallery/full/shibir/shibir-005.jpeg","assets/gallery/full/shibir/shibir-006.jpeg","assets/gallery/full/shibir/shibir-007.jpeg","assets/gallery/full/shibir/shibir-008.jpeg","assets/gallery/full/shibir/shibir-009.jpeg","assets/gallery/full/shibir/shibir-010.jpeg","assets/gallery/full/shibir/shibir-011.jpeg","assets/gallery/full/shibir/shibir-012.jpeg","assets/gallery/full/shibir/shibir-013.jpeg","assets/gallery/full/shibir/shibir-014.jpeg","assets/gallery/full/shibir/shibir-015.jpeg","assets/gallery/full/shibir/shibir-016.jpeg","assets/gallery/full/shibir/shibir-017.jpeg","assets/gallery/full/shibir/shibir-018.jpeg","assets/gallery/full/shibir/shibir-019.jpeg"]},"akola-full":{"label":"अकोला भागवत सप्ताह","title":"अकोला भागवत सप्ताह — छायाचित्र संग्रह","paths":["assets/gallery/full/akola-full/akola-full-001.jpeg","assets/gallery/full/akola-full/akola-full-002.jpeg","assets/gallery/full/akola-full/akola-full-003.jpeg","assets/gallery/full/akola-full/akola-full-004.jpeg","assets/gallery/full/akola-full/akola-full-005.jpeg","assets/gallery/full/akola-full/akola-full-006.jpeg","assets/gallery/full/akola-full/akola-full-007.jpeg","assets/gallery/full/akola-full/akola-full-008.jpeg","assets/gallery/full/akola-full/akola-full-009.jpeg","assets/gallery/full/akola-full/akola-full-010.jpeg","assets/gallery/full/akola-full/akola-full-011.jpeg","assets/gallery/full/akola-full/akola-full-012.jpeg","assets/gallery/full/akola-full/akola-full-013.jpeg","assets/gallery/full/akola-full/akola-full-014.jpeg","assets/gallery/full/akola-full/akola-full-015.jpeg","assets/gallery/full/akola-full/akola-full-016.jpeg","assets/gallery/full/akola-full/akola-full-017.jpeg","assets/gallery/full/akola-full/akola-full-018.jpeg","assets/gallery/full/akola-full/akola-full-019.jpeg","assets/gallery/full/akola-full/akola-full-020.jpeg","assets/gallery/full/akola-full/akola-full-021.jpeg","assets/gallery/full/akola-full/akola-full-022.jpeg","assets/gallery/full/akola-full/akola-full-023.jpeg","assets/gallery/full/akola-full/akola-full-024.jpeg","assets/gallery/full/akola-full/akola-full-025.jpeg","assets/gallery/full/akola-full/akola-full-026.jpeg","assets/gallery/full/akola-full/akola-full-027.jpeg","assets/gallery/full/akola-full/akola-full-028.jpeg","assets/gallery/full/akola-full/akola-full-029.jpeg","assets/gallery/full/akola-full/akola-full-030.jpeg","assets/gallery/full/akola-full/akola-full-031.jpeg","assets/gallery/full/akola-full/akola-full-032.jpeg","assets/gallery/full/akola-full/akola-full-033.jpeg","assets/gallery/full/akola-full/akola-full-034.jpeg","assets/gallery/full/akola-full/akola-full-035.jpeg","assets/gallery/full/akola-full/akola-full-036.jpeg","assets/gallery/full/akola-full/akola-full-037.jpeg","assets/gallery/full/akola-full/akola-full-038.jpeg","assets/gallery/full/akola-full/akola-full-039.jpeg","assets/gallery/full/akola-full/akola-full-040.jpeg","assets/gallery/full/akola-full/akola-full-041.jpeg","assets/gallery/full/akola-full/akola-full-042.jpeg","assets/gallery/full/akola-full/akola-full-043.jpeg","assets/gallery/full/akola-full/akola-full-044.jpeg","assets/gallery/full/akola-full/akola-full-045.jpeg","assets/gallery/full/akola-full/akola-full-046.jpeg","assets/gallery/full/akola-full/akola-full-047.jpeg"]}};let cat='all',idx=0,timer;const main=document.getElementById('galleryMain'),thumbs=document.getElementById('galleryThumbs'),k=document.getElementById('galleryKicker'),t=document.getElementById('galleryTitle'),counter=document.getElementById('galleryCounter');if(!main)return;function render(){const d=data[cat],path=d.paths[idx];main.style.opacity=.12;setTimeout(()=>{main.src=path;main.alt=`${d.label} ${idx+1}`;main.style.opacity=1},130);k.textContent=d.label;t.textContent=d.title;if(counter)counter.textContent=`${idx+1} / ${d.paths.length}`;thumbs.innerHTML='';d.paths.forEach((src,i)=>{const b=document.createElement('button');if(i===idx)b.className='active';b.innerHTML=`<img src="${src}" alt="${d.label} ${i+1}" loading="lazy">`;b.onclick=()=>{idx=i;render();restart()};thumbs.appendChild(b)});requestAnimationFrame(()=>{const el=thumbs.children[idx];if(el){const left=el.offsetLeft-(thumbs.clientWidth-el.clientWidth)/2;thumbs.scrollTo({left:Math.max(0,left),behavior:'smooth'})}})}function move(n){idx=(idx+n+data[cat].paths.length)%data[cat].paths.length;render()}function restart(){clearInterval(timer);timer=setInterval(()=>move(1),4000)}document.querySelectorAll('.gallery-tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.gallery-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.gallery;idx=0;render();restart()});document.querySelector('.gallery-arrow.prev')?.addEventListener('click',()=>{move(-1);restart()});document.querySelector('.gallery-arrow.next')?.addEventListener('click',()=>{move(1);restart()});render();restart()
+  }
 
-    let current = 0;
-    let timer;
-    let sliderStarted = false;
+  const gallerySection=document.getElementById('gallery');
+  if(!gallerySection)return;
 
-    // Create slider dots
-    slides.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', `स्लाइड ${i + 1}`);
+  if('IntersectionObserver' in window){
+    const galleryObserver=new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting)){
+        galleryObserver.disconnect();
+        initGallery();
+      }
+    },{rootMargin:'500px 0px'});
+    galleryObserver.observe(gallerySection);
+  }else{
+    initGallery();
+  }
+})();
 
-        b.addEventListener('click', () => {
-            show(i);
-            restart();
-        });
+// Optimized main home-screen slider
+(()=>{
+  const slides=[...document.querySelectorAll('.home-slide')],
+        dots=document.querySelector('.home-slider-dots'),
+        prev=document.querySelector('.home-slider-arrow.prev'),
+        next=document.querySelector('.home-slider-arrow.next'),
+        hero=document.querySelector('.home-slider');
 
-        dots.appendChild(b);
-    });
+  if(!slides.length||!dots)return;
 
-    const dotButtons = [...dots.children];
+  let current=0,timer=null,started=false;
+  const images=slides.map(s=>s.querySelector('img'));
 
-    // Show selected slide
-    function show(i) {
-        slides[current].classList.remove('active');
-        dotButtons[current]?.classList.remove('active');
-
-        current = (i + slides.length) % slides.length;
-
-        slides[current].classList.add('active');
-        dotButtons[current]?.classList.add('active');
+  // The first image is the priority image. All remaining home images are
+  // requested only after image 1 is ready, reducing competition on first load.
+  images.forEach((img,i)=>{
+    if(!img)return;
+    if(i===0){
+      img.loading='eager';
+      img.fetchPriority='high';
+      img.decoding='async';
+    }else{
+      img.loading='lazy';
+      img.fetchPriority='low';
+      img.decoding='async';
     }
+  });
 
-    // Automatic slider every 2 seconds
-    function restart() {
-        clearInterval(timer);
+  slides.forEach((_,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.setAttribute('aria-label',`स्लाइड ${i+1}`);
+    b.addEventListener('click',()=>{show(i);restart()});
+    dots.appendChild(b);
+  });
 
-        timer = setInterval(() => {
-            show(current + 1);
-        }, 2000);
+  const dotButtons=[...dots.children];
+
+  function show(i){
+    slides[current]?.classList.remove('active');
+    dotButtons[current]?.classList.remove('active');
+    current=(i+slides.length)%slides.length;
+    slides[current]?.classList.add('active');
+    dotButtons[current]?.classList.add('active');
+
+    // Prepare only the next image.
+    const nextImg=images[(current+1)%images.length];
+    if(nextImg) nextImg.loading='eager';
+  }
+
+  function restart(){
+    clearInterval(timer);
+    timer=setInterval(()=>show(current+1),2000);
+  }
+
+  prev?.addEventListener('click',()=>{show(current-1);restart()});
+  next?.addEventListener('click',()=>{show(current+1);restart()});
+
+  let x=0;
+  hero?.addEventListener('touchstart',e=>{
+    x=e.changedTouches[0].clientX;
+  },{passive:true});
+  hero?.addEventListener('touchend',e=>{
+    const d=e.changedTouches[0].clientX-x;
+    if(Math.abs(d)>45){
+      show(current+(d<0?1:-1));
+      restart();
     }
+  },{passive:true});
 
-    // Previous button
-    prev?.addEventListener('click', () => {
-        show(current - 1);
-        restart();
-    });
+  // Always display slide 1 first.
+  show(0);
 
-    // Next button
-    next?.addEventListener('click', () => {
-        show(current + 1);
-        restart();
-    });
+  const firstImg=images[0];
 
-    // Mobile swipe
-    let x = 0;
-
-    hero?.addEventListener(
-        'touchstart',
-        e => {
-            x = e.changedTouches[0].clientX;
-        },
-        { passive: true }
-    );
-
-    hero?.addEventListener(
-        'touchend',
-        e => {
-            const d = e.changedTouches[0].clientX - x;
-
-            if (Math.abs(d) > 45) {
-                show(current + (d < 0 ? 1 : -1));
-                restart();
-            }
-        },
-        { passive: true }
-    );
-
-    // ALWAYS start website from first image
+  function begin(){
+    if(started)return;
+    started=true;
     show(0);
 
-    // Get first slide image
-    const firstImg = slides[0]?.querySelector('img');
+    // Start downloading the second image only after image 1 is ready.
+    if(images[1]) images[1].loading='eager';
 
-    // Start slider only after first image has loaded
-    function startAfterFirstImage() {
+    // Give image 1 a full two seconds on screen.
+    restart();
+  }
 
-        if (sliderStarted) return;
-
-        sliderStarted = true;
-
-        // Keep first image visible when loading finishes
-        show(0);
-
-        // First image now stays for full 2 seconds
-        // before moving to image 2
-        restart();
-    }
-
-    if (firstImg) {
-
-        // Image already loaded from browser cache
-        if (firstImg.complete && firstImg.naturalWidth > 0) {
-
-            startAfterFirstImage();
-
-        } else {
-
-            // Wait until image 1 is completely loaded
-            firstImg.addEventListener(
-                'load',
-                startAfterFirstImage,
-                { once: true }
-            );
-
-            // If image 1 has an error,
-            // allow slider to continue instead of freezing
-            firstImg.addEventListener(
-                'error',
-                startAfterFirstImage,
-                { once: true }
-            );
-        }
-
-    } else {
-
-        startAfterFirstImage();
-    }
-
+  if(!firstImg){
+    begin();
+  }else if(firstImg.complete&&firstImg.naturalWidth>0){
+    begin();
+  }else{
+    firstImg.addEventListener('load',begin,{once:true});
+    firstImg.addEventListener('error',begin,{once:true});
+  }
 })();
+
+// V19: highlight the current section in the animated navigation.
+(()=>{const links=[...document.querySelectorAll('.nav a[href^="#"]')];const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if(!links.length||!sections.length)return;const setActive=()=>{let current='home';const y=window.scrollY+140;sections.forEach(s=>{if(s.offsetTop<=y)current=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#${current}`))};window.addEventListener('scroll',setActive,{passive:true});setActive()})();
